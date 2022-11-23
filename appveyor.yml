@@ -11,7 +11,7 @@ before_build:
 build:
   project: Appveyor.Gitversion.sln
 
-# after_build:
-#   - cmd: ECHO nuget pack <Project>\<NuSpec>.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
-#   - cmd: nuget pack <Project>\<NuSpec>.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
-#   - cmd: appveyor PushArtifact "<NuSpec>.%GitVersion_NuGetVersion%.nupkg"
+after_build:
+  - cmd: ECHO nuget pack src\Appveyor.Gitversion.Lib\Appveyor.Gitversion.Lib.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
+  - cmd: nuget pack src\Appveyor.Gitversion.Lib\Appveyor.Gitversion.Lib.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Appveyor.Gitversion.Lib.%GitVersion_NuGetVersion%.nupkg"
